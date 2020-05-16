@@ -1,0 +1,99 @@
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <style>
+      table,th,td{
+        border: 1px solid #dddddd;
+        padding: 8px;
+        border-collapse: collapse;   
+           }
+       </style>  
+  </head>
+<br>
+<div class=" row justify-content-center align-items-center">
+
+<button class="btn btn-success" (click)="displayMovies()">Display Movies</button>
+</div>
+    <div class=" row justify-content-center align-items-center">
+      <table >
+        <thead>
+           <tr>
+          <th>Movie Id</th>
+          <th>Movie Name</th>
+          <th>Genre</th>
+          <th>Director</th>
+           </tr>
+        </thead>
+        <tbody>
+                <tr *ngFor="let res of result">
+                 <td> {{res.movieId}}</td>
+                 <td>{{res.moviename}}</td>
+                  <td>{{res.genre}}</td> 
+                  <td> {{res.director}}</td> 
+          </tr>
+        <tbody>    
+      </table>
+      
+</div>
+<div class=" row justify-content-center align-items-center">
+
+    <div class=" row justify-content-center align-items-center">       
+        <div class="form-group">
+          <label for="moviename"><b>Movie:</b></label>
+          <input type="text" [(ngModel)]="moviename" #movienameRef="ngModel" placeholder="Enter Movie name" name="moviename" class="form-control" id="movie" maxlength="30" required> 
+          <div *ngIf='movienameRef.errors && movienameRef.touched' class="alert alert-danger">
+            <div [hidden]='!movienameRef.errors.required'style="font-size:12px;">Provide Movie name</div>
+            <div *ngIf='movienameRef.errors.maxlength' style="font-size:12px;">Movie name should not exceed 30 characters</div> 
+          </div>
+        </div>
+        <br>
+  </div>
+        <button class="btn btn-success" title="Display theatres avilable for the movie name entered" (click)="displayTheatres(moviename)">Display Theatres</button>
+  </div>
+
+<div class=" row justify-content-center align-items-center">
+ 
+<ul>
+    <li *ngFor="let res of result1">      
+        <h6>Theatre:</h6> 
+       {{res.theatre_id}}
+       <h6>City name:</h6> 
+        {{res.city_name}}
+        <h6>Theatre name:</h6>
+        {{res.theatre_name}}
+        <h6>Movie name:</h6>
+        {{res. moviename}}
+    </li>
+</ul>
+</div>
+
+<div>
+<div>
+    <div class=" row justify-content-center align-items-center">       
+        <div class="form-group">
+          <label for="theatrename"><b>Theatre:</b></label>
+          <input type="text" [(ngModel)]="theatrename" #theatrenameRef="ngModel" placeholder="Enter Theatre name" name="theatrename" class="form-control" id="theatre" maxlength="30" required> 
+          <div *ngIf='theatrenameRef.errors && theatrenameRef.touched' class="alert alert-danger">
+            <div [hidden]='!theatrenameRef.errors.required'style="font-size:12px;">Provide Theatre name</div>
+            <div *ngIf='theatrenameRef.errors.maxlength' style="font-size:12px;">Theatre name should not exceed 30 characters</div> 
+          </div>
+        </div>
+        <br>
+        <button class="btn btn-success" title="Display theatres avilable for the movie name entered" (click)="displayShows(theatrename)">Display Shows</button>
+  </div>
+</div>
+<div class=" row justify-content-center align-items-center">
+<ul>
+    <li *ngFor="let res of result3">  
+           
+        <h6>Sl.no:</h6> 
+       {{res.sno}}
+       <h6>timings:</h6> 
+        {{res.timings}}
+        <h6>Show name:</h6>
+        {{res.show}}
+        <h6>Theatre name:</h6>
+        {{res.theatre_name}}
+    </li>
+</ul>
+</div>
+</div>
